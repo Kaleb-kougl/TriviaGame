@@ -2,7 +2,7 @@ const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 const gifURL = "https://api.giphy.com/v1/gifs/search?q="
 
 let gifs = [];
-let questionNumber = 0;
+let questionNumber = 9;
 let dataJSON;
 let countdownTimer;
 let timeout;
@@ -23,6 +23,7 @@ $.ajax({
   console.log(response.data);
   gifs.push(response.data);
 })
+
 // Request trivia questions
 $.ajax({
   url: URL,
@@ -35,7 +36,13 @@ $.ajax({
 
 function handleData(data=dataJSON, qNumber=questionNumber) {
   $('#gif').remove();
+  if (qNumber === 10) {
+    console.log('qnumber = 10');
+    handleEndOfGame();
+    return;
+  }
   $("#question").html(data.results[qNumber].question);
+
 
   for (let i = 0; i < 4; i++) {
     let divRow = $('<div class="row answer-row">');
@@ -53,7 +60,9 @@ function handleData(data=dataJSON, qNumber=questionNumber) {
     }
   }
 
-  const TIME_TOTAL = 10;
+  $('#time-remaining').html(10);
+
+  const TIME_TOTAL = 9;
   let timeElapsed = 0;
   countdownTimer = setInterval(function(){
     $('#time-remaining').html(TIME_TOTAL - timeElapsed);
@@ -81,10 +90,8 @@ $(document).on('click', '.answer', function(){
   console.log(this);
   let value = $(this).attr('data-isCorrect');
   if (value === 'true') {
-    alert('Correct');
     displayGif(true);
   } else {
-    alert('Wrong');
     displayGif(false);
   }
 })
@@ -101,7 +108,7 @@ function displayGif(correct) {
     let imageUrl = gifs[0][0].images.original.url;
     image.attr('src', imageUrl);
     image.attr('alt', 'correct');
-  } 
+  }
   else {
     let imageUrl = gifs[1][0].images.original.url;
     image.attr('src', imageUrl)
@@ -114,4 +121,10 @@ function displayGif(correct) {
   setTimeout(function(){
     handleData()
   }, 3000)
+}
+
+function handleEndOfGame() {
+  let divRow = $('<div class="row">');
+  let divCol = $('<div class="col-12">');
+  $("#question").html(`<h1>All done, here's how you did!</h1>`);
 }
