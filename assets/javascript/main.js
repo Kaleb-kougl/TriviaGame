@@ -68,7 +68,9 @@ $('.answer').on('click', function(){
 })
 
 function displayGif(correct) {
-  let div = $('<div class="col-12">');
+  let divRow = $('<div class="row">');
+  let divCol = $('<div class="col-12">');
+  $('.answer-row').remove();
   let image = $('<img>');
   if (correct) {
     let imageUrl = gifs[0][0].images.original.url;
@@ -80,6 +82,7 @@ function displayGif(correct) {
     image.attr('src', imageUrl)
     image.attr('alt', 'wrong')
   }
-  div.append(image);
-  $('.gif-row').append(div);
+  divCol.append(image);
+  divRow.append(divCol);
+  $('.card-body').append(divRow);
 }
