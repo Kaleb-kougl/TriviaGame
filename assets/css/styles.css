@@ -1,1 +1,4 @@
 /* Bootstrap takes care of reset css */
+#card {
+  padding: 0;
+}
