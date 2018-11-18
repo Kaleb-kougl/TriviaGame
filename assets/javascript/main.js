@@ -1,6 +1,6 @@
 const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 let gifURL = "https://api.giphy.com/v1/gifs/search?q="
-const KEY = "correct&limit=10&api_key=dc6zaTOxFJmzC"
+const KEY = "&limit=10&api_key=dc6zaTOxFJmzC"
 
 let gifs = [];
 
@@ -9,16 +9,16 @@ $.ajax({
   url: gifURL + 'correct' + KEY,
   method: 'GET',
 }).then(function(response){
-  console.log(response);
-  gifs.push(response);
+  console.log(response.data);
+  gifs.push(response.data);
 })
 
 $.ajax({
   url: gifURL + 'wrong' + KEY,
   method: 'GET',
 }).then(function(response){
-  console.log(response);
-  gifs.push(response);
+  console.log(response.data);
+  gifs.push(response.data);
 })
 // Request trivia questions
 $.ajax({
@@ -71,8 +71,15 @@ function displayGif(correct) {
   let div = $('<div class="col-12">');
   let image = $('<img>');
   if (correct) {
-    image.attr('src', )
-  } else {
-    image.attr('src', )
+    let imageUrl = gifs[0][0].images.original.url;
+    image.attr('src', imageUrl);
+    image.attr('alt', 'correct');
+  } 
+  else {
+    let imageUrl = gifs[1][0].images.original.url;
+    image.attr('src', imageUrl)
+    image.attr('alt', 'wrong')
   }
+  div.append(image);
+  $('.gif-row').append(div);
 }
