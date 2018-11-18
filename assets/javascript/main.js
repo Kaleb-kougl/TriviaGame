@@ -26,8 +26,12 @@ function handleData(data) {
       stopTimerFunction();
     }
   }, 1000);
-  
+
   function stopTimerFunction() {
     clearInterval(countdownTimer);
   }
 }
+
+$('.answer').on('click', function(){
+  console.log(this);
+})
