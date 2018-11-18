@@ -1,8 +1,8 @@
 const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 const gifURL = "https://api.giphy.com/v1/gifs/search?q="
-
+const KEY = "&limit=10&api_key=dc6zaTOxFJmzC"
 let gifs = [];
-let qNumber = 0;
+let questionNumber = 0;
 let dataJSON;
 
 // request gifs
@@ -31,16 +31,26 @@ $.ajax({
   handleData(response);
 })
 
-function handleData(data=dataJSON, qNumber=0) {
+function handleData(data=dataJSON, qNumber=questionNumber) {
+  $('#gif').remove();
   $("#question").html(data.results[qNumber].question);
-  $('#answer1').html(data.results[qNumber].correct_answer);
-  $('#answer1').attr('data-isCorrect', 'true');
-  $('#answer2').html(data.results[qNumber].incorrect_answers[0]);
-  $('#answer2').attr('data-isCorrect', 'false');
-  $('#answer3').html(data.results[qNumber].incorrect_answers[1]);
-  $('#answer3').attr('data-isCorrect', 'false');
-  $('#answer4').html(data.results[qNumber].incorrect_answers[2]);
-  $('#answer4').attr('data-isCorrect', 'false');
+
+  for (let i = 0; i < 4; i++) {
+    let divRow = $('<div class="row answer-row">');
+    let divCol = $('<div class="col-12 answer">');
+    if (i === 0) {
+      $(divCol).html(data.results[qNumber].correct_answer);
+      $(divCol).attr('data-isCorrect', 'true');
+      divRow.append(divCol);
+      $('.card-body').append(divRow);
+    } else {
+      $(divCol).html(data.results[qNumber].incorrect_answers[i - 1]);
+      $(divCol).attr('data-isCorrect', 'false');
+      divRow.append(divCol);
+      $('.card-body').append(divRow);
+    }
+  }
+
   const TIME_TOTAL = 10;
   let timeElapsed = 0;
   let countdownTimer = setInterval(function(){
@@ -60,7 +70,7 @@ function handleData(data=dataJSON, qNumber=0) {
   }
 }
 
-$('.answer').on('click', function(){
+$(document).on('click', '.answer', function(){
   console.log(this);
   let value = $(this).attr('data-isCorrect');
   if (value === 'true') {
@@ -73,6 +83,7 @@ $('.answer').on('click', function(){
 })
 
 function displayGif(correct) {
+  questionNumber++;
   let divRow = $('<div class="row">');
   let divCol = $('<div class="col-12">');
   $('.answer-row').remove();
@@ -87,10 +98,11 @@ function displayGif(correct) {
     image.attr('src', imageUrl)
     image.attr('alt', 'wrong')
   }
+  image.attr('id', 'gif')
   divCol.append(image);
   divRow.append(divCol);
   $('.card-body').append(divRow);
   setTimeout(function(){
     handleData()
-  }, 2000)
+  }, 3000)
 }
