@@ -1,9 +1,11 @@
 const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 const gifURL = "https://api.giphy.com/v1/gifs/search?q="
-const KEY = "&limit=10&api_key=dc6zaTOxFJmzC"
+
 let gifs = [];
 let questionNumber = 0;
 let dataJSON;
+let countdownTimer;
+let timeout;
 
 // request gifs
 $.ajax({
@@ -53,21 +55,26 @@ function handleData(data=dataJSON, qNumber=questionNumber) {
 
   const TIME_TOTAL = 10;
   let timeElapsed = 0;
-  let countdownTimer = setInterval(function(){
+  countdownTimer = setInterval(function(){
     $('#time-remaining').html(TIME_TOTAL - timeElapsed);
     timeElapsed++;
     if (timeElapsed === 10) {
       stopTimerFunction();
     }
   }, 1000);
-  setTimeout(function(){
-    stopTimerFunction();
+
+  timeOut = setTimeout(function(){
     displayGif(false);
   }, 10000)
 
-  function stopTimerFunction() {
-    clearInterval(countdownTimer);
-  }
+}
+
+function stopTimerFunction(timer) {
+  clearInterval(timer);
+}
+
+function myStopFunction(time) {
+  clearTimeout(time);
 }
 
 $(document).on('click', '.answer', function(){
@@ -83,6 +90,8 @@ $(document).on('click', '.answer', function(){
 })
 
 function displayGif(correct) {
+  myStopFunction(timeOut);
+  stopTimerFunction(countdownTimer);
   questionNumber++;
   let divRow = $('<div class="row">');
   let divCol = $('<div class="col-12">');
