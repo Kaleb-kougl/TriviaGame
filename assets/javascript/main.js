@@ -1,8 +1,9 @@
 const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
-let gifURL = "https://api.giphy.com/v1/gifs/search?q="
-const KEY = "&limit=10&api_key=dc6zaTOxFJmzC"
+const gifURL = "https://api.giphy.com/v1/gifs/search?q="
 
 let gifs = [];
+let qNumber = 0;
+let dataJSON;
 
 // request gifs
 $.ajax({
@@ -25,20 +26,20 @@ $.ajax({
   url: URL,
   method: 'GET',
 }).then(function(response){
-  // dataJSON = response;
+  dataJSON = response;
   console.log(response);
   handleData(response);
 })
 
-function handleData(data) {
-  $("#question").html(data.results[0].question);
-  $('#answer1').html(data.results[0].correct_answer);
+function handleData(data=dataJSON, qNumber=0) {
+  $("#question").html(data.results[qNumber].question);
+  $('#answer1').html(data.results[qNumber].correct_answer);
   $('#answer1').attr('data-isCorrect', 'true');
-  $('#answer2').html(data.results[0].incorrect_answers[0]);
+  $('#answer2').html(data.results[qNumber].incorrect_answers[0]);
   $('#answer2').attr('data-isCorrect', 'false');
-  $('#answer3').html(data.results[0].incorrect_answers[1]);
+  $('#answer3').html(data.results[qNumber].incorrect_answers[1]);
   $('#answer3').attr('data-isCorrect', 'false');
-  $('#answer4').html(data.results[0].incorrect_answers[2]);
+  $('#answer4').html(data.results[qNumber].incorrect_answers[2]);
   $('#answer4').attr('data-isCorrect', 'false');
   const TIME_TOTAL = 10;
   let timeElapsed = 0;
@@ -49,6 +50,10 @@ function handleData(data) {
       stopTimerFunction();
     }
   }, 1000);
+  setTimeout(function(){
+    stopTimerFunction();
+    displayGif(false);
+  }, 10000)
 
   function stopTimerFunction() {
     clearInterval(countdownTimer);
@@ -85,4 +90,7 @@ function displayGif(correct) {
   divCol.append(image);
   divRow.append(divCol);
   $('.card-body').append(divRow);
+  setTimeout(function(){
+    handleData()
+  }, 2000)
 }
