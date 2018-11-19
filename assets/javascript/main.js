@@ -15,7 +15,6 @@ $.ajax({
   url: gifURL + 'correct' + KEY,
   method: 'GET',
 }).then(function(response){
-  // console.log(response.data);
   gifs.push(response.data);
 })
 
@@ -23,7 +22,6 @@ $.ajax({
   url: gifURL + 'wrong' + KEY,
   method: 'GET',
 }).then(function(response){
-  // console.log(response.data);
   gifs.push(response.data);
 })
 
@@ -33,14 +31,21 @@ $.ajax({
   method: 'GET',
 }).then(function(response){
   dataJSON = response;
-  // console.log(response);
-  handleData(response);
+  handleStart();
 })
+
+function handleStart() {
+  $('#question').on('click', function(){
+    $('#question').html('Question');
+    $('#time-div').css({'display': 'block'});
+    $('#question').off('click');
+    handleData();
+  })
+}
 
 function handleData(data=dataJSON, qNumber=questionNumber) {
   $('#gif').remove();
   if (qNumber === 10) {
-    console.log('qnumber = 10');
     handleEndOfGame();
     return;
   }
@@ -77,10 +82,8 @@ function handleData(data=dataJSON, qNumber=questionNumber) {
 
   timeOut = setTimeout(function(){
     displayGif(false);
-    console.log('this is want 1 u want');
     unansweredCount++;
   }, 10000)
-
 }
 
 function stopTimerFunction(timer) {
@@ -92,7 +95,6 @@ function myStopFunction(time) {
 }
 
 $(document).on('click', '.answer', function(){
-  console.log(this);
   let value = $(this).attr('data-isCorrect');
   if (value === 'true') {
     correctCount++;
@@ -112,12 +114,12 @@ function displayGif(correct) {
   $('.answer-row').remove();
   let image = $('<img>');
   if (correct) {
-    let imageUrl = gifs[0][correctCount - 1].images.original.url;
+    let imageUrl = gifs[0][correctCount % 10].images.original.url;
     image.attr('src', imageUrl);
     image.attr('alt', 'correct');
   }
   else {
-    let imageUrl = gifs[1][incorrectCount - 1].images.original.url;
+    let imageUrl = gifs[1][incorrectCount % 10].images.original.url;
     image.attr('src', imageUrl)
     image.attr('alt', 'wrong')
   }
