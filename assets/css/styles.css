@@ -46,32 +46,6 @@ body {
   color: #ffffff;
 }
 
-@-webkit-keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
-  }
-}
-
-@-moz-keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
-  }
-}
-
-@keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
-  }
-}
 
 @-webkit-keyframes neon {
   from {
@@ -97,5 +71,32 @@ body {
   }
   to {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var( --pinkGlow), 0 0 35px var(--pinkGlow), 0 0 40px var( --pinkGlow), 0 0 50px var( --pinkGlow), 0 0 75px var(--pinkGlow);
+  }
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
+  }
+}
+
+@-moz-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
+  }
+}
+
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
   }
 }
