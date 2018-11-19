@@ -1,4 +1,9 @@
 /* Bootstrap takes care of reset css */
+:root {
+  --blueGlow: #228DFF;
+  --pinkGlow: #fbacab;
+}
+
 body {
   background-image: url('../images/pacman.png');
   background-size: 50%;
@@ -9,13 +14,24 @@ body {
   padding: 0;
   margin-top: 5%;
   text-align: center;
-  border-color: rgb(48, 21, 223);
-  color: rgb(251, 172, 171);
+  border-color: #3015df;
+  color: #fbacab;
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.answer:hover {
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+  color: #ffffff;
 }
 
 .glow {
   font-size: 10em;
-  color: #228DFF;
+  color: var(--blueGlow);
   font-family: Iceland;
   text-decoration: none;
   -webkit-transition: all 0.5s;
@@ -32,31 +48,54 @@ body {
 
 @-webkit-keyframes neon2 {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
   }
 }
 
 @-moz-keyframes neon2 {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
   }
 }
 
 @keyframes neon2 {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--blueGlow), 0 0 70px var(--blueGlow), 0 0 80px var(--blueGlow), 0 0 100px var(--blueGlow), 0 0 150px var(--blueGlow);
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blueGlow), 0 0 35px var(--blueGlow), 0 0 40px var(--blueGlow), 0 0 50px var(--blueGlow), 0 0 75px var(--blueGlow);
   }
 }
 
-.card-header {
-  font-family: "Press Start 2P";
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var( --pinkGlow), 0 0 70px var(--pinkGlow), 0 0 80px var( --pinkGlow), 0 0 100px var( --pinkGlow), 0 0 150px var(--pinkGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var( --pinkGlow), 0 0 35px var(--pinkGlow), 0 0 40px var( --pinkGlow), 0 0 50px var( --pinkGlow), 0 0 75px var(--pinkGlow);
+  }
+}
+
+@-moz-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var( --pinkGlow), 0 0 70px var(--pinkGlow), 0 0 80px var( --pinkGlow), 0 0 100px var( --pinkGlow), 0 0 150px var(--pinkGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var( --pinkGlow), 0 0 35px var(--pinkGlow), 0 0 40px var( --pinkGlow), 0 0 50px var( --pinkGlow), 0 0 75px var(--pinkGlow);
+  }
+}
+
+@keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var( --pinkGlow), 0 0 70px var(--pinkGlow), 0 0 80px var( --pinkGlow), 0 0 100px var( --pinkGlow), 0 0 150px var(--pinkGlow);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var( --pinkGlow), 0 0 35px var(--pinkGlow), 0 0 40px var( --pinkGlow), 0 0 50px var( --pinkGlow), 0 0 75px var(--pinkGlow);
+  }
 }
