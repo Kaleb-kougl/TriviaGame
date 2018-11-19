@@ -97,7 +97,7 @@ function myStopFunction(time) {
 
 $(document).on('click touchend', '.answer', function(){
   let value = $(this).attr('data-isCorrect');
-  if (value === 'true') {
+  if (value == 'true') {
     correctCount++;
     displayGif(true);
   } else {
