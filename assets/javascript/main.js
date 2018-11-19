@@ -95,7 +95,7 @@ function myStopFunction(time) {
   clearTimeout(time);
 }
 
-$(document).on('click', '.answer', function(){
+$(document).on('click touchstart', '.answer', function(){
   let value = $(this).attr('data-isCorrect');
   if (value === 'true') {
     correctCount++;
