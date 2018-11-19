@@ -134,21 +134,40 @@ function displayGif(correct) {
 
 function handleEndOfGame() {
   $("#question").html(`<h1>All done, here's how you did!</h1>`);
-  let divRow = $('<div class="row">');
+  let divRow = $('<div class="row end-of-game">');
   let divCol = $('<div class="col-12">');
   divCol.html(`Correct Answers ${correctCount}`);
   divRow.append(divCol);
   $('.card-body').append(divRow);
 
-  let divr = $('<div class="row">');
+  let divr = $('<div class="row end-of-game">');
   let divc = $('<div class="col-12">');
   divc.html(`Incorrect Answers ${incorrectCount}`);
   divr.append(divc);
   $('.card-body').append(divr);
 
-  let divur = $('<div class="row">');
+  let divur = $('<div class="row end-of-game">');
   let divuc = $('<div class="col-12">');
   divuc.html(`Unanswered ${unansweredCount}`);
   divur.append(divuc);
   $('.card-body').append(divur);
+
+  let restartRow = $('<div class="row end-of-game">');
+  let restartCol = $('<div class="col-12">');
+  restartCol.html(`Restart`);
+  restartRow.append(restartCol);
+  restartRow.attr('id', 'restart');
+  $('.card-body').append(restartRow);
 }
+
+$(document).on('click', '#restart', function(){
+  $('#restart').off('click');
+  $('#restart').remove();
+  $('.answer-row').remove();
+  $('.end-of-game').remove();
+  questionNumber = 0;
+  correctCount = 0;
+  incorrectCount = 0;
+  unansweredCount = 0;
+  handleData();
+})
