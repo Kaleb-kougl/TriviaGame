@@ -8,6 +8,7 @@ body {
   background-image: url('../images/pacman.png');
   background-size: 50%;
   font-family: "Press Start 2P";
+  font-size: calc(1vw + 1vh + 1vmin);
 }
 
 #card {
@@ -20,6 +21,7 @@ body {
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   transition: all 0.5s;
+  font-size: 1em;
 }
 
 .answer:hover {
@@ -30,7 +32,7 @@ body {
 }
 
 .glow {
-  font-size: 10em;
+  font-size: 7em;
   color: var(--blueGlow);
   font-family: Iceland;
   text-decoration: none;
