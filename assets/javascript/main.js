@@ -162,7 +162,7 @@ function handleEndOfGame() {
   $('.card-body').append(restartRow);
 }
 
-$(document).on('click', '#restart', function(){
+$(document).on('click touchend', '#restart', function(){
   $('#restart').off('click');
   $('#restart').remove();
   $('.answer-row').remove();
