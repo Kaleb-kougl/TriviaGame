@@ -114,6 +114,7 @@ function displayGif(correct) {
   let divCol = $('<div class="col-12">');
   $('.answer-row').remove();
   let image = $('<img>');
+  image.attr('class', 'img-fluid')
   if (correct === true) {
     let imageUrl = gifs[0][correctCount % 10].images.original.url;
     image.attr('src', imageUrl);
