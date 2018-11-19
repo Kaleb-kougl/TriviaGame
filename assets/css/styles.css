@@ -1,4 +1,11 @@
 /* Bootstrap takes care of reset css */
+body {
+  background-image: url('../images/pacman.png');
+  background-size: 50%;
+}
 #card {
   padding: 0;
+  text-align: center;
+  border-color: rgb(48, 21, 223);
+  color: rgb(251, 172, 171);
 }

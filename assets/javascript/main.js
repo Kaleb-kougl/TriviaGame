@@ -1,6 +1,6 @@
 const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 const gifURL = "https://api.giphy.com/v1/gifs/search?q="
-
+const KEY = "&limit=10&api_key=dc6zaTOxFJmzC"
 let gifs = [];
 let questionNumber = 0;
 let dataJSON;
@@ -52,16 +52,17 @@ function handleData(data=dataJSON, qNumber=questionNumber) {
   $("#question").html(data.results[qNumber].question);
 
 
+  let randomNum = Math.floor(Math.random() * 4)
   for (let i = 0; i < 4; i++) {
     let divRow = $('<div class="row answer-row">');
     let divCol = $('<div class="col-12 answer">');
-    if (i === 0) {
+    if (i === randomNum) {
       $(divCol).html(data.results[qNumber].correct_answer);
       $(divCol).attr('data-isCorrect', 'true');
       divRow.append(divCol);
       $('.card-body').append(divRow);
     } else {
-      $(divCol).html(data.results[qNumber].incorrect_answers[i - 1]);
+      $(divCol).html(data.results[qNumber].incorrect_answers[((i + randomNum) % 3)]);
       $(divCol).attr('data-isCorrect', 'false');
       divRow.append(divCol);
       $('.card-body').append(divRow);
@@ -113,7 +114,7 @@ function displayGif(correct) {
   let divCol = $('<div class="col-12">');
   $('.answer-row').remove();
   let image = $('<img>');
-  if (correct) {
+  if (correct === true) {
     let imageUrl = gifs[0][correctCount % 10].images.original.url;
     image.attr('src', imageUrl);
     image.attr('alt', 'correct');
