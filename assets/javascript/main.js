@@ -2,17 +2,20 @@ const URL = 'https://opentdb.com/api.php?amount=10&category=15&type=multiple';
 const gifURL = "https://api.giphy.com/v1/gifs/search?q="
 
 let gifs = [];
-let questionNumber = 9;
+let questionNumber = 0;
 let dataJSON;
 let countdownTimer;
 let timeout;
+let correctCount = 0;
+let incorrectCount = 0;
+let unansweredCount = 0;
 
 // request gifs
 $.ajax({
   url: gifURL + 'correct' + KEY,
   method: 'GET',
 }).then(function(response){
-  console.log(response.data);
+  // console.log(response.data);
   gifs.push(response.data);
 })
 
@@ -20,7 +23,7 @@ $.ajax({
   url: gifURL + 'wrong' + KEY,
   method: 'GET',
 }).then(function(response){
-  console.log(response.data);
+  // console.log(response.data);
   gifs.push(response.data);
 })
 
@@ -30,7 +33,7 @@ $.ajax({
   method: 'GET',
 }).then(function(response){
   dataJSON = response;
-  console.log(response);
+  // console.log(response);
   handleData(response);
 })
 
@@ -74,6 +77,8 @@ function handleData(data=dataJSON, qNumber=questionNumber) {
 
   timeOut = setTimeout(function(){
     displayGif(false);
+    console.log('this is want 1 u want');
+    unansweredCount++;
   }, 10000)
 
 }
@@ -90,8 +95,10 @@ $(document).on('click', '.answer', function(){
   console.log(this);
   let value = $(this).attr('data-isCorrect');
   if (value === 'true') {
+    correctCount++;
     displayGif(true);
   } else {
+    incorrectCount++;
     displayGif(false);
   }
 })
@@ -105,12 +112,12 @@ function displayGif(correct) {
   $('.answer-row').remove();
   let image = $('<img>');
   if (correct) {
-    let imageUrl = gifs[0][0].images.original.url;
+    let imageUrl = gifs[0][correctCount - 1].images.original.url;
     image.attr('src', imageUrl);
     image.attr('alt', 'correct');
   }
   else {
-    let imageUrl = gifs[1][0].images.original.url;
+    let imageUrl = gifs[1][incorrectCount - 1].images.original.url;
     image.attr('src', imageUrl)
     image.attr('alt', 'wrong')
   }
@@ -124,7 +131,22 @@ function displayGif(correct) {
 }
 
 function handleEndOfGame() {
+  $("#question").html(`<h1>All done, here's how you did!</h1>`);
   let divRow = $('<div class="row">');
   let divCol = $('<div class="col-12">');
-  $("#question").html(`<h1>All done, here's how you did!</h1>`);
+  divCol.html(`Correct Answers ${correctCount}`);
+  divRow.append(divCol);
+  $('.card-body').append(divRow);
+
+  let divr = $('<div class="row">');
+  let divc = $('<div class="col-12">');
+  divc.html(`Incorrect Answers ${incorrectCount}`);
+  divr.append(divc);
+  $('.card-body').append(divr);
+
+  let divur = $('<div class="row">');
+  let divuc = $('<div class="col-12">');
+  divuc.html(`Unanswered ${unansweredCount}`);
+  divur.append(divuc);
+  $('.card-body').append(divur);
 }
