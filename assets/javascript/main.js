@@ -16,14 +16,15 @@ $.ajax({
   method: 'GET',
 }).then(function(response){
   gifs.push(response.data);
+// makes sure the gifs are pushed in the correct order
+  $.ajax({
+    url: gifURL + 'wrong' + KEY,
+    method: 'GET',
+  }).then(function(response){
+    gifs.push(response.data);
+  })
 })
 
-$.ajax({
-  url: gifURL + 'wrong' + KEY,
-  method: 'GET',
-}).then(function(response){
-  gifs.push(response.data);
-})
 
 // Request trivia questions
 $.ajax({
