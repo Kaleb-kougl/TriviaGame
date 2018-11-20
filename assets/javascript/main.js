@@ -156,7 +156,7 @@ function handleEndOfGame() {
   $('.card-body').append(divur);
 
   let restartRow = $('<div class="row end-of-game">');
-  let restartCol = $('<div class="col-12">');
+  let restartCol = $('<div class="col-12 answer">');
   restartCol.html(`Restart`);
   restartRow.append(restartCol);
   restartRow.attr('id', 'restart');
